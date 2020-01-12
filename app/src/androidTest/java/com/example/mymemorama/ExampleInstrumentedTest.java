@@ -1,4 +1,4 @@
-package com.example.memorama;
+package com.example.mymemorama;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.memorama", appContext.getPackageName());
+        assertEquals("com.example.mymemorama", appContext.getPackageName());
     }
 }

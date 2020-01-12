@@ -1,4 +1,4 @@
-package com.example.memorama;
+package com.example.mymemorama;
 
 import org.junit.Test;
 
