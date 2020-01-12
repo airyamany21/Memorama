@@ -436,9 +436,12 @@ public class MainActivity extends AppCompatActivity {
 ////                tv_p2.setTextColor(Color.GRAY);
 ////                tv_p1.setTextColor(Color.BLACK);
 //            }
-            if (turn2 == 1){
+            if (turn2 == 1) {
                 attempts++;
                 intentos.setText("Fallidos:" + attempts);
+            }
+            if (attempts == 3) {
+                intentosMax();
             }
         }
 
@@ -498,6 +501,33 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         }
+    }
+
+    private void intentosMax() {
+        AlertDialog.Builder alertDialogBuilder = new
+                AlertDialog.Builder(MainActivity.this);
+        alertDialogBuilder.setMessage("Solo tienes 3 intentos fallidos como máximo")
+                //alertDialogBuilder.setMessage("Ganaste\nP1:"+playersPoints+"\nP2:" + cpuPoints)
+                //alertDialogBuilder.setMessage("Ganaste\nP1:" + playersPoints + "\nP2:" + cpuPoints)
+                .setCancelable(false)
+                .setPositiveButton("NEW", new
+                        DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        ;
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     private void frontOfCardsResources() {
