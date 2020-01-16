@@ -400,9 +400,14 @@ public class MainActivity extends AppCompatActivity {
                 iv_34.setVisibility(View.INVISIBLE);
             }
 
+            // turn 1 para activarse los completados
             if (turn == 1) {
                 playersPoints++;
                 puntaje.setText("Completados:" + playersPoints);
+                // se verifica si hubo un par completo de cualquiera de los 6, y si es el caso
+                // resetea los intentos fallidos a cero para que tenga otras tres oportunidades
+                // por cada par encontrado
+                verificarIntentosCompletados();
             }
 
 //            if (turn == 1) {
@@ -436,12 +441,14 @@ public class MainActivity extends AppCompatActivity {
 ////                tv_p2.setTextColor(Color.GRAY);
 ////                tv_p1.setTextColor(Color.BLACK);
 //            }
+
+            // turn 2 para activarse los fallidos
             if (turn2 == 1) {
                 attempts++;
                 intentos.setText("Fallidos:" + attempts);
-            }
-            if (attempts == 3) {
-                intentosMax();
+                if (attempts == 3) {
+                    verificarIntentosFallidos();
+                }
             }
         }
 
@@ -503,10 +510,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void intentosMax() {
+    private void intentosMaximos() {
         AlertDialog.Builder alertDialogBuilder = new
                 AlertDialog.Builder(MainActivity.this);
-        alertDialogBuilder.setMessage("Solo tienes 3 intentos fallidos como máximo")
+        alertDialogBuilder.setMessage("Solo tienes 3 intentos por PAR")
                 //alertDialogBuilder.setMessage("Ganaste\nP1:"+playersPoints+"\nP2:" + cpuPoints)
                 //alertDialogBuilder.setMessage("Ganaste\nP1:" + playersPoints + "\nP2:" + cpuPoints)
                 .setCancelable(false)
@@ -545,13 +552,76 @@ public class MainActivity extends AppCompatActivity {
         image205 = R.drawable.personajes205;
         image206 = R.drawable.sven206;
 
-//        if (image101==image201){
-////            playersPoints++;
-////            puntaje.setText("P1:" + playersPoints);
-////
-////        }
+    }
 
+    private void verificarIntentosCompletados() {
+        if (playersPoints == 1) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+        }
+        if (playersPoints == 2) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+        }
+        if (playersPoints == 3) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+        }
+        if (playersPoints == 4) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+        }
+        if (playersPoints == 5) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+        }
+        if (playersPoints == 6) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+        }
+    }
 
+    private void verificarIntentosFallidos() {
+
+        if (image101 == R.drawable.anna101 && image201 == R.drawable.anna201) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+            if (attempts == 0) {
+                intentosMaximos();
+            }
+        }
+        if (image102 == R.drawable.elsa102 && image202 == R.drawable.elsa202) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+            if (attempts == 0) {
+                intentosMaximos();
+            }
+        }
+        if (image103 == R.drawable.kristoff103 && image203 == R.drawable.kristoff203) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+            if (attempts == 0) {
+                intentosMaximos();
+            }
+        }
+        if (image104 == R.drawable.olaf104 && image204 == R.drawable.olaf204) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+            if (attempts == 0) {
+                intentosMaximos();
+            }
+        }
+        if (image105 == R.drawable.personajes105 && image205 == R.drawable.personajes205) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+        }
+        if (image106 == R.drawable.sven106 && image206 == R.drawable.sven206) {
+            attempts = 0;
+            intentos.setText("Fallidos:" + attempts);
+            if (attempts == 0) {
+                intentosMaximos();
+            }
+        }
     }
 
 }
