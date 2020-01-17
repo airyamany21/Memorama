@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 //    TextView tv_p2;
     TextView puntaje;
     TextView intentos;
+    TextView intentosTotales;
 
     // id de imagenes
     ImageView iv_11;
@@ -52,10 +53,12 @@ public class MainActivity extends AppCompatActivity {
     int clickedFirst;
     int clickedSecond;
     int cardNumber = 1;
+    int turn0 = 1;
     int turn = 1;
     int turn2 = 1;
     int playersPoints = 0;
     int attempts = 0;
+    int attemptsTotals = 0;
     int cpuPoints = 0;
 
     @Override
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 //        tv_p2 = findViewById(R.id.tv_p2);
         puntaje = findViewById(R.id.puntaje);
         intentos = findViewById(R.id.intentos);
+        intentosTotales = findViewById(R.id.intentosTotales);
 
         iv_11 = findViewById(R.id.iv_11);
         iv_12 = findViewById(R.id.iv_12);
@@ -233,49 +237,7 @@ public class MainActivity extends AppCompatActivity {
             iv.setImageResource(image101);
         } else if (cardArray[card] == 102) {
             iv.setImageResource(image102);
-        }
-
-//        switch (cardArray[card]) {
-//
-//            case 101:
-//                iv.setImageResource(image101);
-//                break;
-//            case 102:
-//                iv.setImageResource(image102);
-//                break;
-//            case R.id.iv_13:
-//                iv.setImageResource(image103);
-//                break;
-//            case R.id.iv_14:
-//                iv.setImageResource(image104);
-//                break;
-//            case R.id.iv_21:
-//                iv.setImageResource(image105);
-//                break;
-//            case R.id.iv_22:
-//                iv.setImageResource(image106);
-//                break;
-//            case R.id.iv_23:
-//                iv.setImageResource(image201);
-//                break;
-//            case R.id.iv_24:
-//                iv.setImageResource(image202);
-//                break;
-//            case R.id.iv_31:
-//                iv.setImageResource(image203);
-//                break;
-//            case R.id.iv_32:
-//                iv.setImageResource(image204);
-//                break;
-//            case R.id.iv_33:
-//                iv.setImageResource(image205);
-//                break;
-//            case R.id.iv_34:
-//                iv.setImageResource(image206);
-//                break;
-//        }
-
-        else if (cardArray[card] == 103) {
+        } else if (cardArray[card] == 103) {
             iv.setImageResource(image103);
         } else if (cardArray[card] == 104) {
             iv.setImageResource(image104);
@@ -346,8 +308,14 @@ public class MainActivity extends AppCompatActivity {
     private void calculate() {
         // si las imagenes son iguales remueve la etiqueta (tag)
         // y la adiere al punto
-        if (firstCard == secondCard) {
 
+        // turn0 1 para activarse los intentos totales
+        if (turn0 == 1) {
+            attemptsTotals++;
+            intentosTotales.setText("Intentos Totales:" + attemptsTotals);
+        }
+
+        if (firstCard == secondCard) {
             if (clickedFirst == 0) {
                 iv_11.setVisibility(View.INVISIBLE);
             } else if (clickedFirst == 1) {
@@ -373,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (clickedFirst == 11) {
                 iv_34.setVisibility(View.INVISIBLE);
             }
-
+            /////////////////////////////////////////
             if (clickedSecond == 0) {
                 iv_11.setVisibility(View.INVISIBLE);
             } else if (clickedSecond == 1) {
